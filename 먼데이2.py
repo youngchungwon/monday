@@ -460,12 +460,12 @@ def create_dali_subitem_on_main(main_item_id: int, info: Dict[str, Any]) -> int:
 # 5) Webhook 엔드포인트
 # =========================
 @app.route("/monday-webhook", methods=["POST"])
+
+def monday_webhook():
     body = request.get_json(force=True)
     print("[WEBHOOK BODY]", json.dumps(body, ensure_ascii=False))
     event = body.get("event") or {}
     print("[WEBHOOK EVENT]", event)
-def monday_webhook():
-
     
     # challenge 응답
     if "challenge" in body:
@@ -539,5 +539,6 @@ def monday_webhook():
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
 
 
