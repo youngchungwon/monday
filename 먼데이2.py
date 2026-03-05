@@ -345,6 +345,11 @@ def create_usage_item_on_log(usage: Dict[str, Any]) -> int:
 # 4) 중복 방지: 성공 후 체크박스 ON
 # =========================
 def set_checkbox(item_id: int, board_id: int, checkbox_col_id: str, checked: bool = True) -> None:
+    if not board_id:
+        raise RuntimeError(
+            f"set_checkbox: board_id is None (item_id={item_id}, col_id={checkbox_col_id})"
+        )
+
     mutation = """
     mutation ($item_id: ID!, $board_id: ID!, $vals: JSON!) {
       change_multiple_column_values(item_id: $item_id, board_id: $board_id, column_values: $vals) {
@@ -352,10 +357,18 @@ def set_checkbox(item_id: int, board_id: int, checkbox_col_id: str, checked: boo
       }
     }
     """
-    vals = {checkbox_col_id: {"checked": checked}}
-    monday_query(mutation, {"item_id": str(item_id),"board_id": str(board_id), "vals": json.dumps(vals)})
-    print(f"[INFO] Set {checkbox_col_id}={checked} on subitem {item_id}")
 
+    vals = {checkbox_col_id: {"checked": "true" if checked else "false"}}
+
+    monday_query(
+        mutation,
+        {
+            "item_id": str(item_id),
+            "board_id": str(board_id),
+            "vals": json.dumps(vals),
+        },
+    )
+    print(f"[INFO] Set {checkbox_col_id}={checked} on item {item_id} (board {board_id})")
 # =========================
 # 5) 데일리 서브아이템 읽기
 # =========================
@@ -475,7 +488,7 @@ def monday_webhook():
                 return "", 200
 
             new_sub_id = create_dali_subitem_on_main(dali_info["main_item_id"], dali_info)
-            set_checkbox(subitem_id, DALI_REPORT_BOARD_ID, DALI_DONE_COL_ID, True)
+            set_checkbox(subitem_id, dali_info["sub_board_id"], DALI_DONE_COL_ID, True)
             return "", 200
                
         info = get_subitem_and_parent(subitem_id)
@@ -522,4 +535,3 @@ def monday_webhook():
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
     app.run(host="0.0.0.0", port=port, debug=True)
-
