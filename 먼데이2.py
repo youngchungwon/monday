@@ -483,10 +483,8 @@ def monday_webhook():
         #  혹은 공용 query로 board_id만 먼저 읽는 helper를 만들어도 됨)
 
         dali_info = get_dali_subitem_info(subitem_id)
-        if dali_info["sub_board_id"] == DALI_REPORT_BOARD_ID:
+        if dali_info and dali_info["main_item_id"]:
             if dali_info["done"]:
-                return "", 200
-            if not dali_info["main_item_id"]:
                 return "", 200
             if dali_info["cost"] <= 0:
                 return "", 200
@@ -539,6 +537,7 @@ def monday_webhook():
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
 
 
 
