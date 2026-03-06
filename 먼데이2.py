@@ -62,8 +62,8 @@ LOG_COL_PERSON       = "person"  # 자재사용 이력 보드 담당자(people) 
 # DaliReport (예시) 컬럼 ID들
 DALI_REPORT_BOARD_ID = 5021674094
 DALI_SUB_COST_COL_ID = "numeric"          # 비용
-DALI_SUB_LINK_MAIN_COL_ID = "board_relation_mm14re5n"  # 메인보드 연결
-DALI_DONE_COL_ID = "boolean_mm15ypy2"              # 처리 완료 체크(추가 추천)
+DALI_SUB_LINK_MAIN_COL_ID = "board_relation_mm16qszg"  # 메인보드 연결
+DALI_DONE_COL_ID = "boolean_mm1628bc"              # 처리 완료 체크(추가 추천)
 
 # 메인보드 서브아이템 컬럼 ID
 MAIN_SUB_COST_COL_ID = "numeric_mm15sc7y"
@@ -537,6 +537,7 @@ def monday_webhook():
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
 
 
 
