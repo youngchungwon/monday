@@ -27,7 +27,7 @@ HEADERS = {
 # 하위아이템(메인보드 서브아이템) 컬럼 ID
 SUB_SPARE_COL_ID   = "board_relation_mky9ep7a"   # spare list (board_relation)
 SUB_QTY_COL_ID     = "text_mky9taeg"         # 사용 수량
-SUB_SPARE_DONE_COL_ID = "boolean_mkyqj6k5"         # spare list 생성
+SUB_SPARE_DONE_COL_ID = "boolean_mm1cnz18"         # spare list 생성
 SUB_LOG_DONE_COL_ID = "boolean_mkyqzjas"        #자재사용 내역 생성
 SUB_LOCATION_COL_ID = "lookup_mky91xzr"         #분출 위치
 OWNER_COL_ID = "person"  # 담당자(people) 컬럼 id
@@ -537,6 +537,7 @@ def monday_webhook():
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
 
 
 
