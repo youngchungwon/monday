@@ -60,10 +60,10 @@ LOG_COL_DATE         = "date4"          # 날짜(Date)
 LOG_COL_PERSON       = "person"  # 자재사용 이력 보드 담당자(people) 컬럼 id
 
 # DaliReport (예시) 컬럼 ID들
-DALI_REPORT_BOARD_ID = 5027259343
-DALI_SUB_COST_COL_ID = "numeric_mm34q02w"          # 비용
+DALI_REPORT_BOARD_ID = 5028923611                  # 메인보드(수정)
+DALI_SUB_COST_COL_ID = "numeric_mm34q02w"          # 비용(수정)
+DALI_DONE_COL_ID = "boolean_mm15ypy2"              # 처리 완료 체크(수정)
 DALI_SUB_LINK_MAIN_COL_ID = "board_relation_mm14re5n"  # 메인보드 연결
-DALI_DONE_COL_ID = "boolean_mm15ypy2"              # 처리 완료 체크(추가 추천)
 
 # 메인보드 서브아이템 컬럼 ID
 MAIN_SUB_COST_COL_ID = "numeric_mm15sc7y"
